@@ -1,0 +1,155 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #29A0B1;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar__container {
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #DDFFE7;
+}
+
+.navbar__logo img {
+  height: 50px;
+}
+
+.navbar__nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.navbar__nav a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  transition: color 0.2s;
+}
+
+.navbar__nav a span {
+  padding-right: 6px;
+}
+.navbar__nav a svg {
+  padding-left: 6px;
+}
+
+.navbar__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #DDFFE7;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn:hover{
+    color: #98D7C2;
+}
+
+.btn--signin {
+  color: #DDFFE7;
+  border: 1px solid #DDFFE7;
+  background: transparent;
+}
+
+.btn--signin:hover {
+  background: #167D7F;
+}
+
+.btn--signup {
+  background: #DDFFE7;
+  color: #167D7F;
+}
+
+.btn--signup:hover {
+  color: #98D7C2;
+  background: #167D7F;
+}
+
+.navbar__hamburger {
+  display: none;
+  font-size: 1.5rem;
+  color: #DDFFE7;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+
+  .navbar__nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 250px;
+    background: #29A0B1;
+    flex-direction: column;
+    gap: 30px;
+    padding: 80px 20px;
+    transition: right 0.3s ease;
+    z-index: 999;
+  }
+
+  .navbar__nav.navbar__nav--open {
+    right: 0;
+  }
+
+  .navbar__actions {
+    display: none;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  .navbar__nav a,
+  .navbar__nav .btn {
+    font-size: 1.1rem;
+    padding: 10px 0;
+  }
+
+  .navbar__nav .btn--signin {
+    color: #DDFFE7;
+    border: 1px solid #DDFFE7;
+    background: transparent;
+  }
+
+  .navbar__nav .btn--signin:hover {
+    background: #167D7F;
+  }
+
+  .navbar__nav .btn--signup {
+    background: #DDFFE7;
+    color: #167D7F;
+  }
+
+  .navbar__nav .btn--signup:hover {
+    background: #98D7C2;
+  }
+}

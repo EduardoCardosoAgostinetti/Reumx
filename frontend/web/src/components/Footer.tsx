@@ -1,9 +1,7 @@
 import '../styles/foooter.css'
 import {
     FaInfoCircle,
-    FaTrophy,
     FaQuestionCircle,
-    FaEnvelope
 } from 'react-icons/fa'
 
 export default function Footer() {
@@ -12,25 +10,16 @@ export default function Footer() {
             <div className="footer__container">
 
                 <nav className="footer__nav">
-                    <a href="">
+                    <a href="/">
                         <FaInfoCircle />
                         <span>ABOUT US</span>
                     </a>
 
-                    <a href="">
-                        <FaTrophy />
-                        <span>AWARDS</span>
-                    </a>
-
-                    <a href="">
+                    <a href="/contact">
                         <FaQuestionCircle />
                         <span>HELP</span>
                     </a>
 
-                    <a href="">
-                        <FaEnvelope />
-                        <span>CONTACT</span>
-                    </a>
                 </nav>
 
 

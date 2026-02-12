@@ -24,17 +24,17 @@ export default function Navbar() {
                         <span>Home</span>
                     </Link>
 
-                    <Link to="/" className='btn' onClick={() => setMenuOpen(false)}>
+                    <Link to="/contact" className='btn' onClick={() => setMenuOpen(false)}>
                         <FaEnvelope />
                         <span>Contact</span>
                     </Link>
 
-                    <Link to="/" className="btn btn--signin" onClick={() => setMenuOpen(false)}>
+                    <Link to="/signin" className="btn btn--signin" onClick={() => setMenuOpen(false)}>
                         <FaSignInAlt />
                         <span>Sign In</span>
                     </Link>
 
-                    <Link to="/" className="btn btn--signup" onClick={() => setMenuOpen(false)}>
+                    <Link to="/signup" className="btn btn--signup" onClick={() => setMenuOpen(false)}>
                         <FaUserPlus />
                         <span>Sign Up</span>
                     </Link>

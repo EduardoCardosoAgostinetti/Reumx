@@ -1,5 +1,5 @@
 const { User } = require("../models/user_model");
-const { apiResponse, capitalizeFullName, isValidEmail, sendResetEmail } = require("../settings/helpers");
+const { apiResponse, capitalizeFullName, isValidEmail, sendResetEmail, isAtLeast18 } = require("../settings/helpers");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { Op } = require("sequelize");
@@ -15,7 +15,18 @@ exports.createUser = async (req, res) => {
     if (!isValidEmail(email))
       return apiResponse(res, false, "INVALID_EMAIL", "The provided email is not valid.", null, 400);
     if (!birthdate)
-      return apiResponse(res, false, "MISSING_birthdate", "The 'Birth Date' field is required.", null, 400);
+      return apiResponse(res, false, "MISSING_BIRTHDATE", "The 'Birth Date' field is required.", null, 400);
+
+    if (!isAtLeast18(birthdate))
+      return apiResponse(
+        res,
+        false,
+        "UNDERAGE",
+        "You must be at least 18 years old to register.",
+        null,
+        403
+      );
+
     if (!password)
       return apiResponse(res, false, "MISSING_PASSWORD", "The 'Password' field is required.", null, 400);
     if (!confirmPassword)
@@ -73,7 +84,7 @@ exports.loginUser = async (req, res) => {
     const token = jwt.sign(
       { id: user.id, email: user.email, fullName: user.fullName, birthdate: user.birthdate },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "5d" }
     );
 
     return apiResponse(res, true, "LOGIN_SUCCESS", "Login successful.", {

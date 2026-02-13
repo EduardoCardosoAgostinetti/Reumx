@@ -48,4 +48,20 @@ async function sendResetEmail(toEmail, resetToken) {
   });
 }
 
-module.exports = { apiResponse, capitalizeFullName, isValidEmail, sendResetEmail };
+function isAtLeast18(birthdate) {
+  const today = new Date();
+  const birth = new Date(birthdate);
+
+  let age = today.getFullYear() - birth.getFullYear();
+  const monthDiff = today.getMonth() - birth.getMonth();
+  const dayDiff = today.getDate() - birth.getDate();
+
+  // Se ainda não fez aniversário este ano
+  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+    age--;
+  }
+
+  return age >= 18;
+}
+
+module.exports = { apiResponse, capitalizeFullName, isValidEmail, sendResetEmail, isAtLeast18 };

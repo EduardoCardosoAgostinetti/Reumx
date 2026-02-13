@@ -26,14 +26,15 @@
 
 /* ===== CARD ===== */
 
+
 .signup-card {
-    flex-direction: row-reverse;
+  flex-direction: row-reverse;
   width: 850px;
   background: var(--white);
   border-radius: 20px;
   display: flex;
   overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* ===== SIDES ===== */
@@ -67,6 +68,48 @@
   border-color: var(--cerceta);
 }
 
+.date-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.date-field label {
+  font-size: 0.75rem;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+.date-field input {
+  padding: 14px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+.terms-checkbox {
+  align-items: center;
+  margin: 14px 0 20px;
+  font-size: 0.9rem;
+}
+
+.terms-checkbox input {
+  margin: 15px;
+  cursor: pointer;
+}
+
+.terms-checkbox label {
+  cursor: pointer;
+  color: #444;
+}
+
+.terms-checkbox span {
+  color: var(--teal-green);
+  font-weight: 600;
+}
+
+
+
 /* ===== BUTTONS ===== */
 
 .btn-signin {
@@ -86,11 +129,9 @@
 }
 
 .signup-right {
-  background: linear-gradient(
-    135deg,
-    var(--cerceta),
-    var(--hortela)
-  );
+  background: linear-gradient(135deg,
+      var(--cerceta),
+      var(--hortela));
   color: var(--white);
   text-align: center;
 }

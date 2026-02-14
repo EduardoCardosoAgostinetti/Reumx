@@ -1,5 +1,5 @@
 const { User } = require("../models/user_model");
-const { apiResponse, capitalizeFullName, isValidEmail, sendResetEmail, isAtLeast18 } = require("../settings/helpers");
+const { apiResponse, capitalizeFullName, isValidEmail, sendResetEmail, isAtLeast18, sendContactEmail } = require("../settings/helpers");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { Op } = require("sequelize");
@@ -261,5 +261,45 @@ exports.updatePassword = async (req, res) => {
   } catch (error) {
     console.error(error);
     return apiResponse(res, false, "SERVER_ERROR", "Error updating password.", null, 500);
+  }
+};
+
+exports.sendContactMessage = async (req, res) => {
+  try {
+    const { fullName, email, message } = req.body;
+
+    if (!fullName)
+      return apiResponse(res, false, "MISSING_FULLNAME", "Full name is required.", null, 400);
+
+    if (!email)
+      return apiResponse(res, false, "MISSING_EMAIL", "Email is required.", null, 400);
+
+    if (!isValidEmail(email))
+      return apiResponse(res, false, "INVALID_EMAIL", "Invalid email.", null, 400);
+
+    if (!message)
+      return apiResponse(res, false, "MISSING_MESSAGE", "Message is required.", null, 400);
+
+    await sendContactEmail({ fullName, email, message });
+
+    return apiResponse(
+      res,
+      true,
+      "CONTACT_SENT",
+      "Your message has been sent successfully.",
+      null,
+      200
+    );
+
+  } catch (error) {
+    console.error(error);
+    return apiResponse(
+      res,
+      false,
+      "SERVER_ERROR",
+      "Error sending contact message.",
+      null,
+      500
+    );
   }
 };

@@ -1,4 +1,4 @@
-import '../styles/forgot-password.css';
+import '../styles/reset-password.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Alert from '../components/Alerts';
@@ -6,17 +6,25 @@ import Loading from '../components/Loading';
 
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { forgotPassword } from '../services/forgot-password';
+import { resetPassword } from '../services/reset-password';
 import type { AlertType } from '../components/Alerts';
 
 import axios from 'axios';
 
-export default function ForgotPassword() {
+export default function ResetPassword() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
-  const [email, setEmail] = useState('');
+  // 🔑 token vindo da URL
+  const token = searchParams.get('token');
+
+  const [form, setForm] = useState({
+    newPassword: '',
+    confirmPassword: '',
+  });
+
   const [loading, setLoading] = useState(false);
 
   // ALERT STATE
@@ -25,15 +33,30 @@ export default function ForgotPassword() {
   const [alertMessage, setAlertMessage] = useState('');
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setEmail(e.target.value);
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!email) {
+    if (!token) {
+      setAlertType('error');
+      setAlertMessage('Invalid or missing reset token.');
+      setAlertOpen(true);
+      return;
+    }
+
+    if (!form.newPassword || !form.confirmPassword) {
       setAlertType('warning');
-      setAlertMessage('Please enter your email');
+      setAlertMessage('All fields are required.');
+      setAlertOpen(true);
+      return;
+    }
+
+    if (form.newPassword !== form.confirmPassword) {
+      setAlertType('warning');
+      setAlertMessage('Passwords do not match.');
       setAlertOpen(true);
       return;
     }
@@ -41,19 +64,21 @@ export default function ForgotPassword() {
     try {
       setLoading(true);
 
-      await forgotPassword({ email });
+      await resetPassword({
+        token,
+        newPassword: form.newPassword,
+        confirmPassword: form.confirmPassword,
+      });
 
       setAlertType('success');
-      setAlertMessage(
-        'If this email exists, a password reset link has been sent.'
-      );
+      setAlertMessage('Password reset successfully.');
       setAlertOpen(true);
 
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setAlertType('error');
         setAlertMessage(
-          err.response?.data?.message || 'Failed to send reset link'
+          err.response?.data?.message || 'Error resetting password'
         );
       } else {
         setAlertType('error');
@@ -78,29 +103,38 @@ export default function ForgotPassword() {
     <>
       <Navbar />
 
-      <main className="forgot-container">
-        <div className="forgot-page">
-          <div className="forgot-card">
+      <main className="reset-password-container">
+        <div className="reset-password-page">
+          <div className="reset-password-card">
 
-            <div className="forgot-left">
-              <h2>Forgot Password</h2>
+            <div className="reset-password-left">
+              <h2>Reset Password</h2>
 
               <p className="description">
-                Enter your email address and we’ll send you a link
-                to reset your password.
+                Enter your new password below.
               </p>
 
               <form onSubmit={handleSubmit}>
                 <input
-                  type="email"
-                  placeholder="Email"
-                  value={email}
+                  type="password"
+                  name="newPassword"
+                  placeholder="New password"
+                  value={form.newPassword}
+                  onChange={handleChange}
+                  required
+                />
+
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirm new password"
+                  value={form.confirmPassword}
                   onChange={handleChange}
                   required
                 />
 
                 <button className="btn-signin" disabled={loading}>
-                  {loading ? 'SENDING...' : 'SEND RESET LINK'}
+                  {loading ? 'RESETTING...' : 'RESET PASSWORD'}
                 </button>
               </form>
 
@@ -109,10 +143,10 @@ export default function ForgotPassword() {
               </a>
             </div>
 
-            <div className="forgot-right">
-              <h2>Need Help?</h2>
+            <div className="reset-password-right">
+              <h2>Almost There!</h2>
               <p>
-                Don’t worry. Password recovery is quick and secure.
+                Choose a strong password to keep your account secure.
               </p>
             </div>
 

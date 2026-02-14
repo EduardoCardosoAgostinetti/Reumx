@@ -6,13 +6,18 @@ export interface SignInPayload {
 }
 
 export interface SignInResponse {
-  token: string;
-  user: {
-    id: string;
-    fullName: string;
-    email: string;
-  };
+  success: boolean
+  code: string
+  message: string
+  data: {
+    id: string
+    fullName: string
+    email: string
+    birthdate: string
+    token: string
+  }
 }
+
 
 export const signIn = (data: SignInPayload) => {
   return api.post<SignInResponse>('/user/sign-in', data);

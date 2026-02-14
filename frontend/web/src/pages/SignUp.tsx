@@ -1,17 +1,18 @@
-import '../styles/signup.css'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import Alert from '../components/Alerts'
+import '../styles/signup.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import Alert from '../components/Alerts';
+import Loading from '../components/Loading';
 
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import type { ChangeEvent, FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 
-import { signUp } from '../services/signup'
-import type { SignUpPayload } from '../services/signup'
-import type { AlertType } from '../components/Alerts'
+import { signUp } from '../services/signup';
+import type { SignUpPayload } from '../services/signup';
+import type { AlertType } from '../components/Alerts';
 
-import axios from 'axios'
+import axios from 'axios';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -31,7 +32,6 @@ export default function SignUp() {
   const [alertType, setAlertType] = useState<AlertType>('success');
   const [alertMessage, setAlertMessage] = useState('');
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -60,7 +60,7 @@ export default function SignUp() {
 
       const payload: SignUpPayload = {
         ...form,
-        birthdate: form.birthdate, // 🔥 já está YYYY-MM-DD
+        birthdate: form.birthdate, // YYYY-MM-DD
       };
 
       await signUp(payload);
@@ -80,11 +80,11 @@ export default function SignUp() {
         setAlertMessage('Unexpected error');
       }
       setAlertOpen(true);
+
     } finally {
       setLoading(false);
     }
   }
-
 
   function handleCloseAlert() {
     setAlertOpen(false);
@@ -124,10 +124,10 @@ export default function SignUp() {
               />
 
               <div className="date-field">
-                <label>Birthdate (Month - Day - Year)</label>
+                <label>Birthdate</label>
                 <input
                   type="date"
-                  name="birthdate"                
+                  name="birthdate"
                   value={form.birthdate}
                   onChange={handleChange}
                   required
@@ -164,7 +164,6 @@ export default function SignUp() {
                 </label>
               </div>
 
-
               <button className="btn-signin" disabled={loading}>
                 {loading ? 'CREATING...' : 'SIGN UP'}
               </button>
@@ -189,6 +188,9 @@ export default function SignUp() {
       </main>
 
       <Footer />
+
+      {/* LOADING OVERLAY */}
+      <Loading open={loading} />
 
       {/* ALERT OVERLAY */}
       <Alert

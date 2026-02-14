@@ -48,6 +48,44 @@ async function sendResetEmail(toEmail, resetToken) {
   });
 }
 
+async function sendContactEmail({ fullName, email, message }) {
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT || 587,
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+
+  await transporter.sendMail({
+    from: `"Contact - Reumx" <${process.env.SMTP_USER}>`,
+    to: process.env.SMTP_USER,
+    replyTo: email,
+    subject: `New contact message`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px;">
+
+        <p><strong>Name:</strong> ${fullName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+
+        <hr />
+
+        <p style="white-space: pre-line;">
+          ${message}
+        </p>
+
+        <hr />
+
+        <p style="font-size: 12px; color: #777;">
+          Esta mensagem foi enviada através do formulário de contato do Reumx.
+        </p>
+      </div>
+    `
+  });
+}
+
 function isAtLeast18(birthdate) {
   const today = new Date();
   const birth = new Date(birthdate);
@@ -64,4 +102,4 @@ function isAtLeast18(birthdate) {
   return age >= 18;
 }
 
-module.exports = { apiResponse, capitalizeFullName, isValidEmail, sendResetEmail, isAtLeast18 };
+module.exports = { apiResponse, capitalizeFullName, isValidEmail, sendResetEmail, isAtLeast18, sendContactEmail };

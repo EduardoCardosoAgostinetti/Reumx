@@ -1,17 +1,18 @@
-import '../styles/signin.css'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import Alert from '../components/Alerts'
+import '../styles/signin.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import Alert from '../components/Alerts';
+import Loading from '../components/Loading';
 
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import type { ChangeEvent, FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 
-import { signIn } from '../services/signin'
-import type { SignInPayload } from '../services/signin'
-import type { AlertType } from '../components/Alerts'
+import { signIn } from '../services/signin';
+import type { SignInPayload } from '../services/signin';
+import type { AlertType } from '../components/Alerts';
 
-import axios from 'axios'
+import axios from 'axios';
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -46,11 +47,12 @@ export default function SignIn() {
 
     try {
       setLoading(true);
-      const response = await signIn(form);
-      console.log(response);
-      // 🔐 (opcional) salvar token
-      localStorage.setItem('token', response.data.token);
 
+      const response = await signIn(form);
+
+      // 🔐 salvar token
+      localStorage.setItem('token', response.data.data.token);
+      
       // SUCCESS
       setAlertType('success');
       setAlertMessage('Login successful!');
@@ -79,7 +81,6 @@ export default function SignIn() {
 
     if (alertType === 'success') {
       navigate('/dashboard');
-
     }
   }
 
@@ -99,7 +100,6 @@ export default function SignIn() {
               placeholder="Email"
               value={form.email}
               onChange={handleChange}
-              required
             />
 
             <input
@@ -108,7 +108,6 @@ export default function SignIn() {
               placeholder="Password"
               value={form.password}
               onChange={handleChange}
-              required
             />
 
             <a href="/forgot-password" className="forgot">
@@ -116,7 +115,7 @@ export default function SignIn() {
             </a>
 
             <button className="btn-signin" disabled={loading}>
-              {loading ? 'SIGNING IN...' : 'SIGN IN'}
+              SIGN IN
             </button>
           </form>
 
@@ -137,6 +136,9 @@ export default function SignIn() {
       </div>
 
       <Footer />
+
+      {/* LOADING OVERLAY */}
+      <Loading open={loading} />
 
       {/* ALERT OVERLAY */}
       <Alert

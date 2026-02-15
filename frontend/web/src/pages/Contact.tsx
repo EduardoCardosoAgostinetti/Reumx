@@ -6,13 +6,15 @@ import Loading from '../components/Loading';
 
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { sendContactMessage } from '../services/contact';
 import type { AlertType } from '../components/Alerts';
-
 import axios from 'axios';
 
 export default function Contact() {
+  const { t } = useTranslation();
+
   const [form, setForm] = useState({
     fullName: '',
     email: '',
@@ -20,15 +22,11 @@ export default function Contact() {
   });
 
   const [loading, setLoading] = useState(false);
-
-  // ALERT STATE
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertType, setAlertType] = useState<AlertType>('success');
   const [alertMessage, setAlertMessage] = useState('');
 
-  function handleChange(
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
+  function handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
   }
@@ -38,39 +36,29 @@ export default function Contact() {
 
     if (!form.fullName || !form.email || !form.message) {
       setAlertType('warning');
-      setAlertMessage('All fields are required.');
+      setAlertMessage(t('allFieldsRequired'));
       setAlertOpen(true);
       return;
     }
 
     try {
       setLoading(true);
-
       await sendContactMessage(form);
 
       setAlertType('success');
-      setAlertMessage('Your message has been sent successfully!');
+      setAlertMessage(t('messageSentSuccess'));
       setAlertOpen(true);
 
-      // limpa formulário
-      setForm({
-        fullName: '',
-        email: '',
-        message: '',
-      });
-
+      setForm({ fullName: '', email: '', message: '' });
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setAlertType('error');
-        setAlertMessage(
-          err.response?.data?.message || 'Failed to send message'
-        );
+        setAlertMessage(err.response?.data?.message || t('failedSendMessage'));
       } else {
         setAlertType('error');
-        setAlertMessage('Unexpected error');
+        setAlertMessage(t('unexpectedError'));
       }
       setAlertOpen(true);
-
     } finally {
       setLoading(false);
     }
@@ -86,13 +74,13 @@ export default function Contact() {
 
       <main className="contact-container">
         <div className="contact-card">
-          <h2>Contact Us</h2>
+          <h2>{t('contactUs')}</h2>
 
           <form className="contact-form" onSubmit={handleSubmit}>
             <input
               type="text"
               name="fullName"
-              placeholder="Full name"
+              placeholder={t('fullName')}
               value={form.fullName}
               onChange={handleChange}
               required
@@ -101,7 +89,7 @@ export default function Contact() {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t('email')}
               value={form.email}
               onChange={handleChange}
               required
@@ -109,14 +97,14 @@ export default function Contact() {
 
             <textarea
               name="message"
-              placeholder="Your message"
+              placeholder={t('yourMessage')}
               value={form.message}
               onChange={handleChange}
               required
             />
 
             <button className="btn-contact" disabled={loading}>
-              {loading ? 'SENDING...' : 'SEND MESSAGE'}
+              {loading ? t('sending') : t('sendMessage')}
             </button>
           </form>
         </div>
@@ -124,10 +112,7 @@ export default function Contact() {
 
       <Footer />
 
-      {/* LOADING OVERLAY */}
       <Loading open={loading} />
-
-      {/* ALERT OVERLAY */}
       <Alert
         open={alertOpen}
         type={alertType}

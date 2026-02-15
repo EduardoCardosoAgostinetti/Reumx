@@ -1,4 +1,5 @@
 import '../styles/alerts.css';
+import { useTranslation } from 'react-i18next';
 
 export type AlertType = 'success' | 'error' | 'warning';
 
@@ -9,19 +10,21 @@ interface AlertProps {
   onClose: () => void;
 }
 
-const titles: Record<AlertType, string> = {
-  success: 'Success',
-  error: 'Error',
-  warning: 'Warning',
-};
-
 export default function Alert({
   open,
   type,
   message,
   onClose,
 }: AlertProps) {
+  const { t } = useTranslation();
+
   if (!open) return null;
+
+  const titles: Record<AlertType, string> = {
+    success: t('success'),
+    error: t('error'),
+    warning: t('warning'),
+  };
 
   return (
     <div className="alert-overlay">
@@ -30,7 +33,7 @@ export default function Alert({
         <p>{message}</p>
 
         <button onClick={onClose}>
-          OK
+          {t('ok')}
         </button>
       </div>
     </div>

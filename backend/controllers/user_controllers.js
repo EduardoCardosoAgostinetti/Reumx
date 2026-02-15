@@ -163,16 +163,16 @@ exports.resetPassword = async (req, res) => {
 
 exports.updateFullName = async (req, res) => {
   try {
-    const { userId, newFullName } = req.body;
+    const { userId, fullName } = req.body;
 
-    if (!newFullName)
+    if (!fullName)
       return apiResponse(res, false, "MISSING_FULLNAME", "The 'Full Name' field is required.", null, 400);
 
     const user = await User.findByPk(userId);
     if (!user)
       return apiResponse(res, false, "USER_NOT_FOUND", "User not found.", null, 404);
 
-    const formattedName = capitalizeFullName(newFullName);
+    const formattedName = capitalizeFullName(fullName);
     await user.update({ fullName: formattedName });
 
     const token = jwt.sign(

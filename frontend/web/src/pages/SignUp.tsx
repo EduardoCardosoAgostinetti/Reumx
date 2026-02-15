@@ -1,12 +1,13 @@
 import '../styles/signup.css';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Alert from '../components/Alerts';
 import Loading from '../components/Loading';
-
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import type { ChangeEvent, FormEvent } from 'react';
 
 import { signUp } from '../services/signup';
 import type { SignUpPayload } from '../services/signup';
@@ -16,6 +17,7 @@ import axios from 'axios';
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [form, setForm] = useState<SignUpPayload>({
     fullName: '',
@@ -26,8 +28,6 @@ export default function SignUp() {
   });
 
   const [loading, setLoading] = useState(false);
-
-  // ALERT STATE
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertType, setAlertType] = useState<AlertType>('success');
   const [alertMessage, setAlertMessage] = useState('');
@@ -43,14 +43,14 @@ export default function SignUp() {
 
     if (form.password !== form.confirmPassword) {
       setAlertType('warning');
-      setAlertMessage('Passwords do not match');
+      setAlertMessage(t('passwordsMismatch'));
       setAlertOpen(true);
       return;
     }
 
     if (!acceptedTerms) {
       setAlertType('warning');
-      setAlertMessage('You must agree to the Terms and Services');
+      setAlertMessage(t('mustAcceptTerms'));
       setAlertOpen(true);
       return;
     }
@@ -66,18 +66,18 @@ export default function SignUp() {
       await signUp(payload);
 
       setAlertType('success');
-      setAlertMessage('Account created successfully!');
+      setAlertMessage(t('accountCreated'));
       setAlertOpen(true);
 
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setAlertType('error');
         setAlertMessage(
-          err.response?.data?.message || 'Error creating account'
+          err.response?.data?.message || t('errorCreatingAccount')
         );
       } else {
         setAlertType('error');
-        setAlertMessage('Unexpected error');
+        setAlertMessage(t('unexpectedError'));
       }
       setAlertOpen(true);
 
@@ -103,12 +103,12 @@ export default function SignUp() {
           <div className="signup-card">
 
             <form className="signup-left" onSubmit={handleSubmit}>
-              <h2>Create Account</h2>
+              <h2>{t('createAccount')}</h2>
 
               <input
                 type="text"
                 name="fullName"
-                placeholder="Full name"
+                placeholder={t('fullName')}
                 value={form.fullName}
                 onChange={handleChange}
                 required
@@ -117,14 +117,14 @@ export default function SignUp() {
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder={t('email')}
                 value={form.email}
                 onChange={handleChange}
                 required
               />
 
               <div className="date-field">
-                <label>Birthdate</label>
+                <label>{t('birthdate')}</label>
                 <input
                   type="date"
                   name="birthdate"
@@ -137,7 +137,7 @@ export default function SignUp() {
               <input
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder={t('password')}
                 value={form.password}
                 onChange={handleChange}
                 required
@@ -146,7 +146,7 @@ export default function SignUp() {
               <input
                 type="password"
                 name="confirmPassword"
-                placeholder="Confirm password"
+                placeholder={t('confirmPassword')}
                 value={form.confirmPassword}
                 onChange={handleChange}
                 required
@@ -160,26 +160,23 @@ export default function SignUp() {
                   onChange={(e) => setAcceptedTerms(e.target.checked)}
                 />
                 <label htmlFor="terms">
-                  I agree to the <span>Terms and Services</span>
+                  {t('terms')}
                 </label>
               </div>
 
               <button className="btn-signin" disabled={loading}>
-                {loading ? 'CREATING...' : 'SIGN UP'}
+                {loading ? t('creating') : t('signUpBtn')}
               </button>
             </form>
 
             <div className="signup-right">
-              <h2>Welcome Back!</h2>
-              <p>
-                Already have an account?
-                Sign in and continue your journey with us.
-              </p>
+              <h2>{t('welcomeBack')}</h2>
+              <p>{t('alreadyAccount')}</p>
               <button
                 className="btn-signup"
                 onClick={() => navigate('/signin')}
               >
-                SIGN IN
+                {t('signInBtn')}
               </button>
             </div>
 
@@ -189,10 +186,7 @@ export default function SignUp() {
 
       <Footer />
 
-      {/* LOADING OVERLAY */}
       <Loading open={loading} />
-
-      {/* ALERT OVERLAY */}
       <Alert
         open={alertOpen}
         type={alertType}

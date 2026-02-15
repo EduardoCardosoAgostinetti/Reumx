@@ -1,44 +1,38 @@
 import '../styles/foooter.css'
-import {
-    FaInfoCircle,
-    FaQuestionCircle,
-} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import { FaInfoCircle, FaQuestionCircle } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 
 export default function Footer() {
-    return (
-        <footer className="footer">
-            <div className="footer__container">
+  const { t } = useTranslation()
 
-                <nav className="footer__nav">
-                    <a href="/">
-                        <FaInfoCircle />
-                        <span>ABOUT US</span>
-                    </a>
+  return (
+    <footer className="footer">
+      <div className="footer__container">
 
-                    <a href="/contact">
-                        <FaQuestionCircle />
-                        <span>HELP</span>
-                    </a>
+        <nav className="footer__nav">
+          <Link to="/">
+            <FaInfoCircle />
+            <span>{t('about_us')}</span>
+          </Link>
 
-                </nav>
+          <Link to="/contact">
+            <FaQuestionCircle />
+            <span>{t('help')}</span>
+          </Link>
+        </nav>
 
+        <hr className="footer__divider" />
 
-                <hr className="footer__divider" />
+        <p className="footer__text">
+          {t('footer_description')}
+        </p>
 
-                <p className="footer__text">
-                    This application offers a continuous, performance-based challenge
-                    where participants progress through measurable activities and rankings.
-                    Results are determined solely by performance and consistency, with full
-                    transparency and clear rules.
-                </p>
+      </div>
 
-            </div>
-
-            <div className="footer__bottom">
-                © 2026 Reumx. All rights reserved.
-            </div>
-        </footer>
-    )
+      <div className="footer__bottom">
+        {t('copyright')}
+      </div>
+    </footer>
+  )
 }
-
-

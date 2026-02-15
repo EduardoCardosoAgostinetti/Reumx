@@ -1,11 +1,18 @@
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
+
 .navbar {
   position: sticky;
   top: 0;
   width: 100%;
-  background: #29A0B1;
+  background: linear-gradient(
+    360deg,
+    var(--primary),
+    var(--primary-dark)
+  );
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .navbar__container {
@@ -15,23 +22,32 @@
   align-items: center;
 }
 
-/* LOGO */
+/* =========================
+   LOGO
+========================= */
+
 .navbar__logo img {
   height: 40px;
 }
 
-/* MENU */
+/* =========================
+   MENU
+========================= */
+
 .navbar__nav {
   display: flex;
   gap: 6px;
 }
 
-/* BOTÕES PADRÃO */
+/* =========================
+   BOTÕES PADRÃO
+========================= */
+
 .btn {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #DDFFE7;
+  color: var(--text-inverse);
   padding: 6px 10px;
   border-radius: 6px;
   text-decoration: none;
@@ -39,10 +55,13 @@
 }
 
 .btn:hover {
-  color: #98D7C2;
+  color: var(--accent);
 }
 
-/* DROPDOWN DESKTOP */
+/* =========================
+   DROPDOWN DESKTOP
+========================= */
+
 .user-dropdown {
   position: relative;
 }
@@ -50,7 +69,7 @@
 .user-dropdown__btn {
   background: transparent;
   border: none;
-  color: #DDFFE7;
+  color: var(--text-inverse);
   display: flex;
   gap: 8px;
   font-weight: 600;
@@ -58,20 +77,19 @@
 }
 
 .user-dropdown__btn:hover {
-  color: #69aeb8;
+  color: var(--accent);
 }
-
 
 .user-dropdown__menu {
   position: absolute;
   top: 120%;
   right: 0;
-  background: #167D7F;
+  background: var(--primary-dark);
   border-radius: 8px;
   min-width: 180px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .user-dropdown__menu a,
@@ -80,36 +98,34 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  color: #DDFFE7;
+  color: var(--text-inverse);
   background: none;
   border: none;
   cursor: pointer;
   text-decoration: none;
 }
 
-.user-dropdown__menu a:hover {
-  background: #29A0B1;
+.user-dropdown__menu a:hover,
+.user-dropdown__menu button:hover {
+  background: var(--primary);
 }
 
-/* LOGOUT */
-.logout {
-  color: #FF6B6B !important;
-}
+/* =========================
+   HAMBURGER
+========================= */
 
-.logout:hover {
-  background: #29A0B1;
-}
-
-/* HAMBURGER */
 .navbar__hamburger {
   z-index: 1000;
   display: none;
   font-size: 1.6rem;
-  color: #DDFFE7;
+  color: var(--text-inverse);
   cursor: pointer;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 768px) {
   .navbar__nav {
     position: fixed;
@@ -117,7 +133,7 @@
     right: -100%;
     height: 100vh;
     width: 260px;
-    background: #29A0B1;
+    background: var(--primary);
     flex-direction: column;
     padding: 90px 20px;
     gap: 5px;
@@ -148,16 +164,24 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #DDFFE7;
+    color: var(--text-inverse);
     font-size: 1.05rem;
     background: none;
     border: none;
     text-decoration: none;
     cursor: pointer;
   }
+
+  .mobile-user-menu a:hover,
+  .mobile-user-menu button:hover {
+    color: var(--accent);
+  }
 }
 
-/* DESKTOP */
+/* =========================
+   DESKTOP
+========================= */
+
 @media (min-width: 769px) {
   .mobile-only {
     display: none;

@@ -1,8 +1,12 @@
-import '../styles/home.css'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import '../styles/home.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Home() {
+  const { t } = useTranslation();
+
   return (
     <>
       <Navbar />
@@ -10,86 +14,61 @@ export default function Home() {
       <main className="home">
         {/* HERO */}
         <section className="home-hero">
-          <h1>Compete. Evolve. Conquer.</h1>
-          <p>
-            Performance determines the winner.
-            A continuous challenge based on merit, consistency, and improvement.
-          </p>
+          <h1>{t('heroTitle')}</h1>
+          <p>{t('heroDescription')}</p>
 
           <div className="hero-actions">
-            <a href="/signup" className="btn-primary">Get Started</a>
-            <a href="/signin" className="btn-secondary">Sign In</a>
+            <Link to="/signup" className="btn-primary">{t('getStarted')}</Link>
+            <Link to="/signin" className="btn-secondary">{t('signIn')}</Link>
           </div>
         </section>
 
         {/* HOW IT WORKS */}
         <section className="home-section">
-          <h2>How the Challenge Works</h2>
+          <h2>{t('howItWorksTitle')}</h2>
 
           <div className="cards">
             <div className="card">
-              <h3>🏆 Performance-Based</h3>
-              <p>
-                Participants earn points over time by completing activities
-                and challenges inside the platform.
-              </p>
+              <h3>{t('performanceBased')}</h3>
+              <p>{t('performanceDescription')}</p>
             </div>
 
             <div className="card">
-              <h3>📈 Progressive Reward</h3>
-              <p>
-                The prize pool grows continuously until it reaches the defined goal.
-                No randomness. No shortcuts.
-              </p>
+              <h3>{t('progressiveReward')}</h3>
+              <p>{t('progressiveRewardDescription')}</p>
             </div>
 
             <div className="card">
-              <h3>📊 Public Ranking</h3>
-              <p>
-                Full transparency with a public leaderboard showing who is leading
-                based on total score.
-              </p>
+              <h3>{t('publicRanking')}</h3>
+              <p>{t('publicRankingDescription')}</p>
             </div>
           </div>
         </section>
 
         {/* MERIT */}
         <section className="home-highlight">
-          <h2>Merit Over Luck</h2>
-          <p>
-            There are no lotteries or random draws.
-            When the prize goal is reached, the top-ranked participant
-            is declared the winner and receives the reward according
-            to the challenge rules.
-          </p>
+          <h2>{t('meritOverLuckTitle')}</h2>
+          <p>{t('meritOverLuckDescription')}</p>
         </section>
 
         {/* TARGET */}
         <section className="home-section">
-          <h2>Who Is This App For?</h2>
+          <h2>{t('targetTitle')}</h2>
 
           <div className="cards">
             <div className="card">
-              <h3>🔥 Long-Term Thinkers</h3>
-              <p>
-                Perfect for people who enjoy long-term challenges
-                and continuous progress.
-              </p>
+              <h3>{t('longTermThinkers')}</h3>
+              <p>{t('longTermThinkersDescription')}</p>
             </div>
 
             <div className="card">
-              <h3>⚔️ Healthy Competition</h3>
-              <p>
-                Compete fairly, track your evolution, and climb
-                the ranking through dedication.
-              </p>
+              <h3>{t('healthyCompetition')}</h3>
+              <p>{t('healthyCompetitionDescription')}</p>
             </div>
 
             <div className="card">
-              <h3>🚀 Consistent Growth</h3>
-              <p>
-                Every action matters. Consistency is the key to winning.
-              </p>
+              <h3>{t('consistentGrowth')}</h3>
+              <p>{t('consistentGrowthDescription')}</p>
             </div>
           </div>
         </section>
@@ -97,5 +76,5 @@ export default function Home() {
 
       <Footer />
     </>
-  )
+  );
 }

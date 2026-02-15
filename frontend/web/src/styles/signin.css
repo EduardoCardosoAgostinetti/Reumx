@@ -1,29 +1,32 @@
-:root {
-  --cerceta: #29A0B1;
-  --teal-green: #167D7F;
-  --hortela: #98D7C2;
-  --hortela-light: #DDFEF7;
-  --white: #ffffff;
-  --gray: #777;
-}
+/* =========================
+   SIGN IN PAGE
+========================= */
 
 .signin-page {
   min-height: 88vh;
-  background: var(--hortela-light);
+  background: var(--bg-page);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* =========================
+   CARD
+========================= */
+
 .signin-card {
   width: 850px;
   height: 480px;
-  background: var(--white);
+  background: var(--bg-card);
   border-radius: 20px;
   display: flex;
   overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
+
+/* =========================
+   COLUMNS
+========================= */
 
 .signin-left,
 .signin-right {
@@ -34,52 +37,66 @@
   justify-content: center;
 }
 
+/* =========================
+   LEFT SIDE
+========================= */
+
 .signin-left h2 {
   margin-bottom: 20px;
-  color: var(--teal-green);
+  color: var(--primary-dark);
 }
 
 .signin-left input {
   margin-bottom: 15px;
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   outline: none;
+  background: var(--bg-card);
+  color: var(--text-primary);
 }
 
 .signin-left input:focus {
-  border-color: var(--cerceta);
+  border-color: var(--primary);
 }
 
 .forgot {
   font-size: 13px;
-  color: var(--gray);
+  color: var(--text-secondary);
   margin-bottom: 20px;
   text-decoration: none;
 }
+
+/* =========================
+   BUTTONS
+========================= */
 
 .btn-signin {
   padding: 12px;
   border: none;
   border-radius: 25px;
-  background: var(--cerceta);
-  color: var(--white);
+  background: var(--primary);
+  color: var(--text-inverse);
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
+  transition: background 0.3s;
 }
 
 .btn-signin:hover {
-  background: var(--teal-green);
+  background: var(--primary-dark);
 }
+
+/* =========================
+   RIGHT SIDE
+========================= */
 
 .signin-right {
   background: linear-gradient(
     135deg,
-    var(--cerceta),
-    var(--hortela)
+    var(--primary),
+    var(--primary-dark)
   );
-  color: var(--white);
+  color: var(--text-inverse);
   text-align: center;
 }
 
@@ -95,22 +112,22 @@
 .btn-signup {
   padding: 12px 35px;
   border-radius: 25px;
-  border: 2px solid var(--white);
+  border: 2px solid var(--text-inverse);
   background: transparent;
-  color: var(--white);
+  color: var(--text-inverse);
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
+  transition: all 0.3s;
 }
 
 .btn-signup:hover {
-  background: var(--white);
-  color: var(--teal-green);
+  background: var(--text-inverse);
+  color: var(--primary-dark);
 }
 
-/* ===========================
+/* =========================
    RESPONSIVE - MOBILE
-=========================== */
+========================= */
 
 @media (max-width: 768px) {
   .signin-card {
@@ -143,10 +160,6 @@
 
   .signin-left h2 {
     text-align: center;
-  }
-
-  .social-icons {
-    justify-content: center;
   }
 
   .signin-left input {

@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Alert from '../components/Alerts';
 import Loading from '../components/Loading';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
@@ -16,6 +18,7 @@ import axios from 'axios';
 export default function ResetPassword() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
 
   // 🔑 token vindo da URL
   const token = searchParams.get('token');
@@ -42,21 +45,21 @@ export default function ResetPassword() {
 
     if (!token) {
       setAlertType('error');
-      setAlertMessage('Invalid or missing reset token.');
+      setAlertMessage(t('invalidToken'));
       setAlertOpen(true);
       return;
     }
 
     if (!form.newPassword || !form.confirmPassword) {
       setAlertType('warning');
-      setAlertMessage('All fields are required.');
+      setAlertMessage(t('allFieldsRequired'));
       setAlertOpen(true);
       return;
     }
 
     if (form.newPassword !== form.confirmPassword) {
       setAlertType('warning');
-      setAlertMessage('Passwords do not match.');
+      setAlertMessage(t('passwordsDoNotMatch'));
       setAlertOpen(true);
       return;
     }
@@ -71,18 +74,18 @@ export default function ResetPassword() {
       });
 
       setAlertType('success');
-      setAlertMessage('Password reset successfully.');
+      setAlertMessage(t('passwordResetSuccess'));
       setAlertOpen(true);
 
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setAlertType('error');
         setAlertMessage(
-          err.response?.data?.message || 'Error resetting password'
+          err.response?.data?.message || t('resetPasswordError')
         );
       } else {
         setAlertType('error');
-        setAlertMessage('Unexpected error');
+        setAlertMessage(t('unexpectedError'));
       }
       setAlertOpen(true);
 
@@ -108,17 +111,15 @@ export default function ResetPassword() {
           <div className="reset-password-card">
 
             <div className="reset-password-left">
-              <h2>Reset Password</h2>
+              <h2>{t('resetPasswordTitle')}</h2>
 
-              <p className="description">
-                Enter your new password below.
-              </p>
+              <p className="description">{t('resetPasswordDescription')}</p>
 
               <form onSubmit={handleSubmit}>
                 <input
                   type="password"
                   name="newPassword"
-                  placeholder="New password"
+                  placeholder={t('newPassword')}
                   value={form.newPassword}
                   onChange={handleChange}
                   required
@@ -127,27 +128,25 @@ export default function ResetPassword() {
                 <input
                   type="password"
                   name="confirmPassword"
-                  placeholder="Confirm new password"
+                  placeholder={t('confirmPassword')}
                   value={form.confirmPassword}
                   onChange={handleChange}
                   required
                 />
 
                 <button className="btn-signin" disabled={loading}>
-                  {loading ? 'RESETTING...' : 'RESET PASSWORD'}
+                  {loading ? t('resetting') : t('resetPasswordBtn')}
                 </button>
               </form>
 
-              <a href="/signin" className="back-link">
-                Back to Sign In
-              </a>
+              <Link to="/signin" className="back-link">
+                {t('backToSignIn')}
+              </Link>
             </div>
 
             <div className="reset-password-right">
-              <h2>Almost There!</h2>
-              <p>
-                Choose a strong password to keep your account secure.
-              </p>
+              <h2>{t('almostThere')}</h2>
+              <p>{t('securePasswordDescription')}</p>
             </div>
 
           </div>

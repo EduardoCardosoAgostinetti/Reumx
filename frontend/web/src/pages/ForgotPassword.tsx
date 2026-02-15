@@ -3,23 +3,24 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Alert from '../components/Alerts';
 import Loading from '../components/Loading';
+import { Link } from 'react-router-dom';
 
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { forgotPassword } from '../services/forgot-password';
 import type { AlertType } from '../components/Alerts';
-
 import axios from 'axios';
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // ALERT STATE
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertType, setAlertType] = useState<AlertType>('success');
   const [alertMessage, setAlertMessage] = useState('');
@@ -33,34 +34,27 @@ export default function ForgotPassword() {
 
     if (!email) {
       setAlertType('warning');
-      setAlertMessage('Please enter your email');
+      setAlertMessage(t('pleaseEnterEmail'));
       setAlertOpen(true);
       return;
     }
 
     try {
       setLoading(true);
-
       await forgotPassword({ email });
 
       setAlertType('success');
-      setAlertMessage(
-        'If this email exists, a password reset link has been sent.'
-      );
+      setAlertMessage(t('resetLinkSent'));
       setAlertOpen(true);
-
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setAlertType('error');
-        setAlertMessage(
-          err.response?.data?.message || 'Failed to send reset link'
-        );
+        setAlertMessage(err.response?.data?.message || t('failedSendResetLink'));
       } else {
         setAlertType('error');
-        setAlertMessage('Unexpected error');
+        setAlertMessage(t('unexpectedError'));
       }
       setAlertOpen(true);
-
     } finally {
       setLoading(false);
     }
@@ -68,7 +62,6 @@ export default function ForgotPassword() {
 
   function handleCloseAlert() {
     setAlertOpen(false);
-
     if (alertType === 'success') {
       navigate('/signin');
     }
@@ -83,37 +76,34 @@ export default function ForgotPassword() {
           <div className="forgot-card">
 
             <div className="forgot-left">
-              <h2>Forgot Password</h2>
+              <h2>{t('forgotPassword')}</h2>
 
               <p className="description">
-                Enter your email address and we’ll send you a link
-                to reset your password.
+                {t('enterEmailDescription')}
               </p>
 
               <form onSubmit={handleSubmit}>
                 <input
                   type="email"
-                  placeholder="Email"
+                  placeholder={t('email')}
                   value={email}
                   onChange={handleChange}
                   required
                 />
 
                 <button className="btn-signin" disabled={loading}>
-                  {loading ? 'SENDING...' : 'SEND RESET LINK'}
+                  {loading ? t('sending') : t('sendResetLink')}
                 </button>
               </form>
 
-              <a href="/signin" className="back-link">
-                Back to Sign In
-              </a>
+              <Link to="/signin" className="back-link">
+                {t('backToSignIn')}
+              </Link>
             </div>
 
             <div className="forgot-right">
-              <h2>Need Help?</h2>
-              <p>
-                Don’t worry. Password recovery is quick and secure.
-              </p>
+              <h2>{t('needHelp')}</h2>
+              <p>{t('passwordRecoveryInfo')}</p>
             </div>
 
           </div>
@@ -121,11 +111,7 @@ export default function ForgotPassword() {
       </main>
 
       <Footer />
-
-      {/* LOADING OVERLAY */}
       <Loading open={loading} />
-
-      {/* ALERT OVERLAY */}
       <Alert
         open={alertOpen}
         type={alertType}

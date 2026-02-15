@@ -9,10 +9,10 @@ import {
   FaTimes,
   FaUser,
   FaCog,
-  FaSignOutAlt,
-  FaChartBar  
+  FaChartBar
 } from 'react-icons/fa'
 import '../styles/navbar.css'
+import { useTranslation } from 'react-i18next'
 
 interface UserPayload {
   id: string
@@ -34,6 +34,7 @@ function getUserFromToken(): UserPayload | null {
 }
 
 export default function Navbar() {
+  const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [user, setUser] = useState<UserPayload | null>(null)
@@ -60,54 +61,38 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    setDropdownOpen(false)
-    setMenuOpen(false)
-    setUser(null)
-    navigate('/')
-  }
-
   return (
     <header className="navbar">
       <div className="navbar__container">
-
-        {/* LOGO */}
         <div className="navbar__logo">
-          <Link to="/" onClick={() => setMenuOpen(false)}>
-            <img src="/src/assets/reumx_without_text_white.png" alt="Logo" />
-          </Link>
+          <img src="/src/assets/reumx_without_text_white.png" alt="Logo" />
         </div>
 
-        {/* MENU */}
         <nav className={`navbar__nav ${menuOpen ? 'navbar__nav--open' : ''}`}>
-
-          {/* NÃO LOGADO */}
           {!user && (
             <>
               <Link to="/" className="btn" onClick={() => setMenuOpen(false)}>
                 <FaHome />
-                <span>Home</span>
+                <span>{t('home')}</span>
               </Link>
 
               <Link to="/contact" className="btn" onClick={() => setMenuOpen(false)}>
                 <FaEnvelope />
-                <span>Contact</span>
+                <span>{t('contact')}</span>
               </Link>
 
               <Link to="/signin" className="btn btn--signin" onClick={() => setMenuOpen(false)}>
                 <FaSignInAlt />
-                <span>Sign In</span>
+                <span>{t('sign_in')}</span>
               </Link>
 
               <Link to="/signup" className="btn btn--signup" onClick={() => setMenuOpen(false)}>
                 <FaUserPlus />
-                <span>Sign Up</span>
+                <span>{t('sign_up')}</span>
               </Link>
             </>
           )}
 
-          {/* LOGADO - DESKTOP */}
           {user && (
             <div className="user-dropdown desktop-only" ref={dropdownRef}>
               <button
@@ -117,44 +102,31 @@ export default function Navbar() {
                 <FaUser />
                 <span>{user.fullName}</span>
               </button>
-
               {dropdownOpen && (
                 <div className="user-dropdown__menu">
-                  <Link to="/" onClick={() => setDropdownOpen(false)}>
-                    <FaChartBar   /> Dashboard
+                  <Link to="/dashboard" onClick={() => setDropdownOpen(false)}>
+                    <FaChartBar /> {t('dashboard')}
                   </Link>
-                  <Link to="/" onClick={() => setDropdownOpen(false)}>
-                    <FaCog /> Settings
+                  <Link to="/dashboard/settings" onClick={() => setDropdownOpen(false)}>
+                    <FaCog /> {t('settings')}
                   </Link>
-                  <button className="logout" onClick={handleLogout}>
-                    <FaSignOutAlt /> Logout
-                  </button>
                 </div>
               )}
             </div>
           )}
-
-          {/* LOGADO - MOBILE */}
+          
           {user && (
             <div className="mobile-only mobile-user-menu">
-
-              <Link to="/" onClick={() => setDropdownOpen(false)}>
-                <FaChartBar   /> Dashboard
+              <Link to="/dashboard" onClick={() => setDropdownOpen(false)}>
+                <FaChartBar /> {t('dashboard')}
               </Link>
-
-              <Link to="/" onClick={() => setMenuOpen(false)}>
-                <FaCog /> Settings
+              <Link to="/dashboard/settings" onClick={() => setMenuOpen(false)}>
+                <FaCog /> {t('settings')}
               </Link>
-
-              <button onClick={handleLogout} className="logout">
-                <FaSignOutAlt /> Logout
-              </button>
             </div>
           )}
-
         </nav>
 
-        {/* HAMBURGER */}
         <div className="navbar__hamburger" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FaTimes /> : <FaBars />}
         </div>

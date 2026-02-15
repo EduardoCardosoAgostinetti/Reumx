@@ -1,13 +1,6 @@
-:root {
-  --cerceta: #29A0B1;
-  --teal-green: #167D7F;
-  --hortela: #98D7C2;
-  --hortela-light: #DDFEF7;
-  --white: #ffffff;
-  --gray: #777;
-}
-
-/* ===== PAGE LAYOUT ===== */
+/* =========================
+   PAGE LAYOUT
+========================= */
 
 .page-container {
   display: flex;
@@ -18,26 +11,29 @@
 .signup-page {
   min-height: 88vh;
   width: 100%;
-  background: var(--hortela-light);
+  background: var(--bg-page);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* ===== CARD ===== */
-
+/* =========================
+   CARD
+========================= */
 
 .signup-card {
   flex-direction: row-reverse;
   width: 850px;
-  background: var(--white);
+  background: var(--bg-card);
   border-radius: 20px;
   display: flex;
   overflow: hidden;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* ===== SIDES ===== */
+/* =========================
+   SIDES
+========================= */
 
 .signup-left,
 .signup-right {
@@ -50,42 +46,51 @@
 
 .signup-left h2 {
   margin-bottom: 25px;
-  color: var(--teal-green);
+  color: var(--primary-dark);
 }
 
-/* ===== INPUTS ===== */
+/* =========================
+   INPUTS
+========================= */
 
 .signup-left input {
   margin-bottom: 15px;
   padding: 13px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   outline: none;
   font-size: 14px;
+  background: var(--bg-card);
+  color: var(--text-primary);
 }
 
 .signup-left input:focus {
-  border-color: var(--cerceta);
+  border-color: var(--primary);
 }
 
 .date-field {
-  position: relative;
   display: flex;
   flex-direction: column;
 }
 
 .date-field label {
   font-size: 0.75rem;
-  color: #777;
+  color: var(--text-secondary);
   margin-bottom: 4px;
 }
 
 .date-field input {
   padding: 14px 12px;
   border-radius: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   font-size: 0.95rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
 }
+
+/* =========================
+   TERMS
+========================= */
 
 .terms-checkbox {
   align-items: center;
@@ -94,45 +99,51 @@
 }
 
 .terms-checkbox input {
-  margin: 15px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
 .terms-checkbox label {
   cursor: pointer;
-  color: #444;
+  color: var(--text-secondary);
 }
 
 .terms-checkbox span {
-  color: var(--teal-green);
+  color: var(--primary);
   font-weight: 600;
 }
 
-
-
-/* ===== BUTTONS ===== */
+/* =========================
+   BUTTONS
+========================= */
 
 .btn-signin {
   margin-top: 10px;
   padding: 13px;
   border: none;
   border-radius: 25px;
-  background: var(--cerceta);
-  color: var(--white);
+  background: var(--primary);
+  color: var(--text-inverse);
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
+  transition: background 0.3s ease;
 }
 
 .btn-signin:hover {
-  background: var(--teal-green);
+  background: var(--primary-dark);
 }
 
+/* =========================
+   RIGHT SIDE
+========================= */
+
 .signup-right {
-  background: linear-gradient(135deg,
-      var(--cerceta),
-      var(--hortela));
-  color: var(--white);
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-dark)
+  );
+  color: var(--text-inverse);
   text-align: center;
 }
 
@@ -145,23 +156,29 @@
   margin-bottom: 30px;
 }
 
+/* =========================
+   SECONDARY BUTTON
+========================= */
+
 .btn-signup {
   padding: 12px 35px;
   border-radius: 25px;
-  border: 2px solid var(--white);
+  border: 2px solid var(--text-inverse);
   background: transparent;
-  color: var(--white);
+  color: var(--text-inverse);
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .btn-signup:hover {
-  background: var(--white);
-  color: var(--teal-green);
+  background: var(--text-inverse);
+  color: var(--primary-dark);
 }
 
-/* ===== RESPONSIVE ===== */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 768px) {
   .signup-card {

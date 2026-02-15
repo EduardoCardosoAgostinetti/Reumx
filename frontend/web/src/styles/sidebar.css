@@ -1,0 +1,162 @@
+/* =========================
+   DASHBOARD LAYOUT
+========================= */
+
+.dashboard {
+  display: flex;
+  min-height: 93vh;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-page);
+}
+
+/* =========================
+   SIDEBAR DESKTOP
+========================= */
+
+.sidebar {
+  width: 260px;
+  background: linear-gradient(
+    180deg,
+    var(--primary),
+    var(--primary-dark)
+  );
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-inverse);
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.sidebar-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.sidebar-profile .avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+}
+
+.sidebar-profile span {
+  font-size: 14px;
+  color: var(--text-inverse);
+}
+
+/* =========================
+   NAV
+========================= */
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: var(--footer-text);
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.nav-item.active {
+  background: var(--accent);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.nav-item svg {
+  font-size: 18px;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main {
+  flex: 1;
+  padding: 24px;
+  background-color: var(--bg-page);
+  overflow-y: auto;
+  color: var(--text-primary);
+}
+
+/* =========================
+   MOBILE MODE (BOTTOM BAR)
+========================= */
+
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  /* BOTTOM BAR */
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    width: 100%;
+    flex-direction: row;
+    padding: 0;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  /* REMOVE PROFILE */
+  .sidebar-profile {
+    display: none;
+  }
+
+  /* NAV HORIZONTAL */
+  .sidebar nav {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  /* BOTÕES MOBILE */
+  .nav-item {
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px;
+    font-size: 11px;
+  }
+
+  .nav-item span {
+    font-size: 10px;
+  }
+
+  /* ESPAÇO PARA BOTTOM BAR */
+  .main {
+    padding-bottom: 80px;
+  }
+}

@@ -1,25 +1,16 @@
-:root {
-  --cerceta: #29A0B1;
-  --teal-green: #167D7F;
-  --hortela: #98D7C2;
-  --hortela-light: #DDFEF7;
-  --white: #ffffff;
-  --gray: #777;
-}
-
 .contact-container {
   min-height: calc(100vh - 160px);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--hortela-light);
+  background: var(--bg-page);
   padding: 40px 20px;
 }
 
 .contact-card {
   width: 100%;
   max-width: 520px;
-  background: var(--white);
+  background: var(--bg-card);
   border-radius: 20px;
   padding: 50px 40px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
@@ -28,7 +19,7 @@
 .contact-card h2 {
   text-align: center;
   margin-bottom: 30px;
-  color: var(--teal-green);
+  color: var(--primary);
 }
 
 .contact-form {
@@ -41,7 +32,9 @@
 .contact-form textarea {
   padding: 14px;
   border-radius: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
   outline: none;
   font-size: 14px;
   resize: none;
@@ -53,7 +46,7 @@
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: var(--cerceta);
+  border-color: var(--primary);
 }
 
 .btn-contact {
@@ -61,15 +54,15 @@
   padding: 14px;
   border-radius: 25px;
   border: none;
-  background: var(--cerceta);
-  color: var(--white);
+  background: var(--primary);
+  color: var(--text-inverse);
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .btn-contact:hover {
-  background: var(--teal-green);
+  background: var(--primary-dark);
 }
 
 @media (max-width: 480px) {

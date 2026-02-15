@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard'
 import ForgotPassword from '../pages/ForgotPassword'
 import ResetPassword from '../pages/ResetPassword'
 import PrivateRoute from './PrivateRoute'
+import Settings from '../pages/Settings'
 
 
 export default function AppRoutes() {
@@ -19,7 +20,22 @@ export default function AppRoutes() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
 
-            <Route path="/dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>}/>
+            <Route
+                path="/dashboard"
+                element={
+                    <PrivateRoute>
+                        <Dashboard />
+                    </PrivateRoute>
+                }
+            >
+                <Route path="settings" element={<Settings />} />
+                {/* <Route index element={<DashboardHome />} />
+                <Route path="apps" element={<DashboardApps />} />
+                <Route path="chart" element={<DashboardChart />} />
+                <Route path="chat" element={<DashboardChat />} />
+                <Route path="settings" element={<DashboardSettings />} />
+                <Route path="help" element={<DashboardHelp />} /> */}
+            </Route>
         </Routes>
     )
 }

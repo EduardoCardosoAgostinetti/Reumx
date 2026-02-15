@@ -1,18 +1,9 @@
-:root {
-  --cerceta: #29A0B1;
-  --teal-green: #167D7F;
-  --hortela: #98D7C2;
-  --hortela-light: #DDFEF7;
-  --white: #ffffff;
-  --gray: #666;
-}
-
 /* =========================
    BASE
 ========================= */
 
 .home {
-  background: var(--hortela-light);
+  background: var(--bg-page);
 }
 
 /* =========================
@@ -24,10 +15,10 @@
   padding: 80px 20px;
   background: linear-gradient(
     135deg,
-    var(--cerceta),
-    var(--hortela)
+    var(--primary),
+    var(--accent)
   );
-  color: var(--white);
+  color: var(--text-inverse);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,6 +37,10 @@
   margin-bottom: 35px;
 }
 
+/* =========================
+   HERO ACTIONS
+========================= */
+
 .hero-actions {
   display: flex;
   gap: 15px;
@@ -58,8 +53,8 @@
 .btn-primary {
   padding: 14px 34px;
   border-radius: 30px;
-  background: var(--white);
-  color: var(--teal-green);
+  background: var(--text-inverse);
+  color: var(--primary);
   font-weight: bold;
   text-decoration: none;
 }
@@ -67,8 +62,8 @@
 .btn-secondary {
   padding: 14px 34px;
   border-radius: 30px;
-  border: 2px solid var(--white);
-  color: var(--white);
+  border: 2px solid var(--text-inverse);
+  color: var(--text-inverse);
   text-decoration: none;
   font-weight: bold;
 }
@@ -83,7 +78,7 @@
 }
 
 .home-section h2 {
-  color: var(--teal-green);
+  color: var(--primary);
   margin-bottom: 50px;
 }
 
@@ -100,7 +95,7 @@
 }
 
 .card {
-  background: var(--white);
+  background: var(--bg-card);
   padding: 35px 30px;
   border-radius: 20px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
@@ -108,12 +103,12 @@
 
 .card h3 {
   margin-bottom: 15px;
-  color: var(--teal-green);
+  color: var(--primary);
 }
 
 .card p {
   font-size: 15px;
-  color: var(--gray);
+  color: var(--text-secondary);
 }
 
 /* =========================
@@ -122,12 +117,12 @@
 
 .home-highlight {
   padding: 90px 20px;
-  background: var(--white);
+  background: var(--bg-card);
   text-align: center;
 }
 
 .home-highlight h2 {
-  color: var(--teal-green);
+  color: var(--primary);
   margin-bottom: 25px;
 }
 
@@ -135,7 +130,7 @@
   max-width: 700px;
   margin: 0 auto;
   font-size: 16px;
-  color: var(--gray);
+  color: var(--text-secondary);
 }
 
 /* =========================

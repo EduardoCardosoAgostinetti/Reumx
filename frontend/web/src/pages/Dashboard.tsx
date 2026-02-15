@@ -1,10 +1,11 @@
-import '../styles/home.css'
-import Navbar from '../components/Navbar'
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 export default function Dashboard() {
     return (
         <>
-            <Navbar />
+        <Navbar />
+        <Sidebar />
         </>
     )
 }

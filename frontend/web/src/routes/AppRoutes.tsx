@@ -8,6 +8,7 @@ import ForgotPassword from '../pages/ForgotPassword'
 import ResetPassword from '../pages/ResetPassword'
 import PrivateRoute from './PrivateRoute'
 import Settings from '../pages/Settings'
+import Games from '../pages/Games'
 
 
 export default function AppRoutes() {
@@ -29,12 +30,7 @@ export default function AppRoutes() {
                 }
             >
                 <Route path="settings" element={<Settings />} />
-                {/* <Route index element={<DashboardHome />} />
-                <Route path="apps" element={<DashboardApps />} />
-                <Route path="chart" element={<DashboardChart />} />
-                <Route path="chat" element={<DashboardChat />} />
-                <Route path="settings" element={<DashboardSettings />} />
-                <Route path="help" element={<DashboardHelp />} /> */}
+                <Route path="games" element={<Games />} />
             </Route>
         </Routes>
     )

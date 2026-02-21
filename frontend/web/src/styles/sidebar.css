@@ -86,8 +86,8 @@
 }
 
 .nav-item.active {
-  background: var(--accent);
-  color: var(--primary-dark);
+  background: var(--border);
+  color: var(--primary);
   font-weight: 600;
 }
 

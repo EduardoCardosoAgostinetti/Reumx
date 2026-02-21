@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import {
-  FaHome,
+  FaChartBar,
   FaCog,
-  FaUser
+  FaUser,
+  FaTrophy
 } from 'react-icons/fa'
 import '../styles/sidebar.css'
 import { useTranslation } from 'react-i18next'
@@ -49,8 +50,13 @@ export default function Sidebar() {
 
         {/* NAV */}
         <nav>
+          <NavLink end to="/dashboard/games" className="nav-item">
+            <FaTrophy />
+            <span>{t('games')}</span>
+          </NavLink>
+
           <NavLink end to="/dashboard" className="nav-item">
-            <FaHome />
+            <FaChartBar />
             <span>{t('dashboard')}</span>
           </NavLink>
 

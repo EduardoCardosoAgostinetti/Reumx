@@ -9,7 +9,8 @@ import {
   FaTimes,
   FaUser,
   FaCog,
-  FaChartBar
+  FaChartBar,
+  FaTrophy,
 } from 'react-icons/fa'
 import '../styles/navbar.css'
 import { useTranslation } from 'react-i18next'
@@ -104,6 +105,9 @@ export default function Navbar() {
               </button>
               {dropdownOpen && (
                 <div className="user-dropdown__menu">
+                  <Link to="/dashboard/games" onClick={() => setDropdownOpen(false)}>
+                    <FaTrophy /> {t('games')}
+                  </Link>
                   <Link to="/dashboard" onClick={() => setDropdownOpen(false)}>
                     <FaChartBar /> {t('dashboard')}
                   </Link>
@@ -114,9 +118,12 @@ export default function Navbar() {
               )}
             </div>
           )}
-          
+
           {user && (
             <div className="mobile-only mobile-user-menu">
+              <Link to="/dashboard/games" onClick={() => setDropdownOpen(false)}>
+                <FaTrophy /> {t('games')}
+              </Link>
               <Link to="/dashboard" onClick={() => setDropdownOpen(false)}>
                 <FaChartBar /> {t('dashboard')}
               </Link>

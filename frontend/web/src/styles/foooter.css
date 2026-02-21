@@ -1,16 +1,8 @@
-/* =========================
-   FOOTER
-========================= */
-
 .footer {
   width: 100%;
   background: var(--primary);
   color: var(--text-inverse);
 }
-
-/* =========================
-   CONTAINER
-========================= */
 
 .footer__container {
   max-width: 1200px;
@@ -18,10 +10,6 @@
   padding: 32px 24px;
   text-align: center;
 }
-
-/* =========================
-   NAV
-========================= */
 
 .footer__nav {
   display: flex;
@@ -47,9 +35,6 @@
   transform: translateY(-1px);
 }
 
-/* =========================
-   DIVIDER
-========================= */
 
 .footer__divider {
   width: 80%;
@@ -58,9 +43,6 @@
   border-top: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-/* =========================
-   TEXT
-========================= */
 
 .footer__text {
   max-width: 820px;
@@ -69,10 +51,6 @@
   line-height: 1.6;
   color: var(--text-inverse);
 }
-
-/* =========================
-   SOCIALS
-========================= */
 
 .footer__socials {
   display: flex;
@@ -93,10 +71,6 @@
   color: var(--accent);
 }
 
-/* =========================
-   BOTTOM
-========================= */
-
 .footer__bottom {
   background: var(--primary-dark);
   text-align: center;
@@ -104,10 +78,6 @@
   font-size: 0.8rem;
   color: var(--text-inverse);
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
 
 @media (max-width: 640px) {
   .footer__nav {

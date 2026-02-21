@@ -1,7 +1,3 @@
-/* =========================
-   SETTINGS PAGE
-========================= */
-
 .settings-page {
   max-width: 800px;
   margin: 0 auto;
@@ -12,10 +8,6 @@
   margin-bottom: 24px;
   color: var(--text-primary);
 }
-
-/* =========================
-   CARD
-========================= */
 
 .settings-card {
   background: var(--bg-card);
@@ -37,10 +29,6 @@
   margin-bottom: 16px;
   color: var(--text-primary);
 }
-
-/* =========================
-   TOGGLE (THEME)
-========================= */
 
 .toggle {
   display: flex;
@@ -69,10 +57,6 @@
   color: var(--text-inverse);
 }
 
-/* =========================
-   LANGUAGE SELECT
-========================= */
-
 .language-select {
   width: 100%;
   padding: 12px 40px 12px 12px;
@@ -96,10 +80,6 @@
 body[data-theme='dark'] .language-select {
   background-image: url("data:image/svg+xml;utf8,<svg fill='%23cbd5e1' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M5 7l5 6 5-6z'/></svg>");
 }
-
-/* =========================
-   PROFILE
-========================= */
 
 .profile-row {
   display: flex;
@@ -142,10 +122,6 @@ body[data-theme='dark'] .language-select {
   background: var(--primary-dark);
 }
 
-/* =========================
-   LOGOUT
-========================= */
-
 .settings-card.danger {
   background: var(--danger-bg);
   border: 1px solid var(--danger-btn);
@@ -167,7 +143,6 @@ body[data-theme='dark'] .language-select {
   opacity: 0.9;
 }
 
-/* botão editar / salvar senha */
 .save-password-btn {
   width: 100%;
   margin-top: 8px;
@@ -194,7 +169,6 @@ body[data-theme='dark'] .language-select {
   transform: scale(0.98);
 }
 
-/* botão desativado visual */
 .save-password-btn:disabled {
   background: #999;
   cursor: not-allowed;

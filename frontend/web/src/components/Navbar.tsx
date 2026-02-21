@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {
   FaHome,
   FaEnvelope,
@@ -9,8 +9,7 @@ import {
   FaTimes,
   FaUser,
   FaCog,
-  FaChartBar,
-  FaTrophy,
+  FaChartBar
 } from 'react-icons/fa'
 import '../styles/navbar.css'
 import { useTranslation } from 'react-i18next'
@@ -41,7 +40,6 @@ export default function Navbar() {
   const [user, setUser] = useState<UserPayload | null>(null)
 
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const navigate = useNavigate()
 
   useEffect(() => {
     setUser(getUserFromToken())
@@ -105,9 +103,6 @@ export default function Navbar() {
               </button>
               {dropdownOpen && (
                 <div className="user-dropdown__menu">
-                  <Link to="/dashboard/games" onClick={() => setDropdownOpen(false)}>
-                    <FaTrophy /> {t('games')}
-                  </Link>
                   <Link to="/dashboard" onClick={() => setDropdownOpen(false)}>
                     <FaChartBar /> {t('dashboard')}
                   </Link>
@@ -121,9 +116,6 @@ export default function Navbar() {
 
           {user && (
             <div className="mobile-only mobile-user-menu">
-              <Link to="/dashboard/games" onClick={() => setDropdownOpen(false)}>
-                <FaTrophy /> {t('games')}
-              </Link>
               <Link to="/dashboard" onClick={() => setDropdownOpen(false)}>
                 <FaChartBar /> {t('dashboard')}
               </Link>

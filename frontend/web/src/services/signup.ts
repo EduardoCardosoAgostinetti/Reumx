@@ -3,7 +3,6 @@ import api from '../settings/api';
 export interface SignUpPayload {
   fullName: string;
   email: string;
-  birthdate: string;
   password: string;
   confirmPassword: string;
 }

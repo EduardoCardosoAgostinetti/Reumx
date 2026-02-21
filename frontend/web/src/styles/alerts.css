@@ -37,28 +37,28 @@
   font-weight: 600;
 }
 
-/* SUCCESS */
 .alert-box.success h3 {
   color: var(--success);
 }
+
 .alert-box.success button {
   background: var(--success);
   color: var(--text-inverse);
 }
 
-/* ERROR */
 .alert-box.error h3 {
   color: var(--error);
 }
+
 .alert-box.error button {
   background: var(--error);
   color: var(--text-inverse);
 }
 
-/* WARNING */
 .alert-box.warning h3 {
   color: var(--warning);
 }
+
 .alert-box.warning button {
   background: var(--warning);
   color: #000;
@@ -69,6 +69,7 @@
     transform: scale(0.9);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;

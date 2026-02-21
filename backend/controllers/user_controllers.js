@@ -14,19 +14,6 @@ exports.createUser = async (req, res) => {
       return apiResponse(res, false, "MISSING_EMAIL", "The 'Email' field is required.", null, 400);
     if (!isValidEmail(email))
       return apiResponse(res, false, "INVALID_EMAIL", "The provided email is not valid.", null, 400);
-    if (!birthdate)
-      return apiResponse(res, false, "MISSING_BIRTHDATE", "The 'Birth Date' field is required.", null, 400);
-
-    if (!isAtLeast18(birthdate))
-      return apiResponse(
-        res,
-        false,
-        "UNDERAGE",
-        "You must be at least 18 years old to register.",
-        null,
-        403
-      );
-
     if (!password)
       return apiResponse(res, false, "MISSING_PASSWORD", "The 'Password' field is required.", null, 400);
     if (!confirmPassword)

@@ -3,16 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Alert from '../components/Alerts';
 import Loading from '../components/Loading';
-
 import { signUp } from '../services/signup';
 import type { SignUpPayload } from '../services/signup';
 import type { AlertType } from '../components/Alerts';
-
 import axios from 'axios';
 
 export default function SignUp() {
@@ -22,7 +19,6 @@ export default function SignUp() {
   const [form, setForm] = useState<SignUpPayload>({
     fullName: '',
     email: '',
-    birthdate: '',
     password: '',
     confirmPassword: '',
   });
@@ -60,7 +56,6 @@ export default function SignUp() {
 
       const payload: SignUpPayload = {
         ...form,
-        birthdate: form.birthdate, // YYYY-MM-DD
       };
 
       await signUp(payload);
@@ -122,17 +117,6 @@ export default function SignUp() {
                 onChange={handleChange}
                 required
               />
-
-              <div className="date-field">
-                <label>{t('birthdate')}</label>
-                <input
-                  type="date"
-                  name="birthdate"
-                  value={form.birthdate}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
 
               <input
                 type="password"

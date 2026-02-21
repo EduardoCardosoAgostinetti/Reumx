@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
-import {
-  FaChartBar,
-  FaCog,
-  FaUser,
-  FaTrophy
-} from 'react-icons/fa'
+import { FaChartBar, FaCog, FaUser } from 'react-icons/fa'
 import '../styles/sidebar.css'
 import { useTranslation } from 'react-i18next'
 
@@ -13,7 +8,6 @@ interface UserPayload {
   id: string
   fullName: string
   email: string
-  birthdate: string
   token: string
 }
 
@@ -40,7 +34,6 @@ export default function Sidebar() {
     <div className="dashboard">
       <aside className="sidebar">
 
-        {/* PROFILE (some no mobile) */}
         <div className="sidebar-profile">
           <div className="avatar">
             <FaUser />
@@ -48,13 +41,7 @@ export default function Sidebar() {
           <span>{user?.fullName || t('user')}</span>
         </div>
 
-        {/* NAV */}
         <nav>
-          <NavLink end to="/dashboard/games" className="nav-item">
-            <FaTrophy />
-            <span>{t('games')}</span>
-          </NavLink>
-
           <NavLink end to="/dashboard" className="nav-item">
             <FaChartBar />
             <span>{t('dashboard')}</span>

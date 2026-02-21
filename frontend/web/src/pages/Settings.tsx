@@ -1,24 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-
 import { useTheme } from '../components/ThemeContext'
 import Alert from '../components/Alerts'
 import Loading from '../components/Loading'
 import type { AlertType } from '../components/Alerts'
 import { useTranslation } from 'react-i18next'
-
-import {
-  FaMoon,
-  FaSun,
-  FaLanguage,
-  FaUserEdit,
-  FaSignOutAlt,
-  FaEdit,
-  FaCheck,
-  FaLock,
-} from 'react-icons/fa'
-
+import { FaMoon, FaSun, FaLanguage, FaUserEdit, FaSignOutAlt, FaEdit, FaCheck, FaLock, } from 'react-icons/fa'
 import { updateFullName, updateEmail, updatePassword } from '../services/settings'
 import '../styles/settings.css'
 

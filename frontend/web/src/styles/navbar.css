@@ -1,16 +1,10 @@
-/* =========================
-   NAVBAR
-========================= */
-
 .navbar {
   position: sticky;
   top: 0;
   width: 100%;
-  background: linear-gradient(
-    360deg,
-    var(--primary),
-    var(--primary-dark)
-  );
+  background: linear-gradient(360deg,
+      var(--primary),
+      var(--primary-dark));
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -22,26 +16,15 @@
   align-items: center;
 }
 
-/* =========================
-   LOGO
-========================= */
-
 .navbar__logo img {
   height: 40px;
 }
-
-/* =========================
-   MENU
-========================= */
 
 .navbar__nav {
   display: flex;
   gap: 6px;
 }
 
-/* =========================
-   BOTÕES PADRÃO
-========================= */
 
 .btn {
   display: flex;
@@ -57,10 +40,6 @@
 .btn:hover {
   color: var(--accent);
 }
-
-/* =========================
-   DROPDOWN DESKTOP
-========================= */
 
 .user-dropdown {
   position: relative;
@@ -110,10 +89,6 @@
   background: var(--primary);
 }
 
-/* =========================
-   HAMBURGER
-========================= */
-
 .navbar__hamburger {
   z-index: 1000;
   display: none;
@@ -121,10 +96,6 @@
   color: var(--text-inverse);
   cursor: pointer;
 }
-
-/* =========================
-   MOBILE
-========================= */
 
 @media (max-width: 768px) {
   .navbar__nav {
@@ -177,10 +148,6 @@
     color: var(--accent);
   }
 }
-
-/* =========================
-   DESKTOP
-========================= */
 
 @media (min-width: 769px) {
   .mobile-only {

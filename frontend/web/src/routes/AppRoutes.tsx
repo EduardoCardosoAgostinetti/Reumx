@@ -8,7 +8,6 @@ import ForgotPassword from '../pages/ForgotPassword'
 import ResetPassword from '../pages/ResetPassword'
 import PrivateRoute from './PrivateRoute'
 import Settings from '../pages/Settings'
-import Games from '../pages/Games'
 
 
 export default function AppRoutes() {
@@ -21,16 +20,8 @@ export default function AppRoutes() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
 
-            <Route
-                path="/dashboard"
-                element={
-                    <PrivateRoute>
-                        <Dashboard />
-                    </PrivateRoute>
-                }
-            >
-                <Route path="settings" element={<Settings />} />
-                <Route path="games" element={<Games />} />
+            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
+                <Route path="settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
             </Route>
         </Routes>
     )

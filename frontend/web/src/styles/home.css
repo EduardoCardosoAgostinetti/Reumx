@@ -1,23 +1,13 @@
-/* =========================
-   BASE
-========================= */
-
 .home {
   background: var(--bg-page);
 }
 
-/* =========================
-   HERO
-========================= */
-
 .home-hero {
   min-height: 75vh;
   padding: 80px 20px;
-  background: linear-gradient(
-    135deg,
-    var(--primary),
-    var(--accent)
-  );
+  background: linear-gradient(135deg,
+      var(--primary),
+      var(--accent));
   color: var(--text-inverse);
   display: flex;
   flex-direction: column;
@@ -37,18 +27,10 @@
   margin-bottom: 35px;
 }
 
-/* =========================
-   HERO ACTIONS
-========================= */
-
 .hero-actions {
   display: flex;
   gap: 15px;
 }
-
-/* =========================
-   BUTTONS
-========================= */
 
 .btn-primary {
   padding: 14px 34px;
@@ -68,10 +50,6 @@
   font-weight: bold;
 }
 
-/* =========================
-   SECTIONS
-========================= */
-
 .home-section {
   padding: 80px 20px;
   text-align: center;
@@ -81,10 +59,6 @@
   color: var(--primary);
   margin-bottom: 50px;
 }
-
-/* =========================
-   CARDS
-========================= */
 
 .cards {
   display: grid;
@@ -111,10 +85,6 @@
   color: var(--text-secondary);
 }
 
-/* =========================
-   HIGHLIGHT
-========================= */
-
 .home-highlight {
   padding: 90px 20px;
   background: var(--bg-card);
@@ -132,10 +102,6 @@
   font-size: 16px;
   color: var(--text-secondary);
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
 
 @media (max-width: 900px) {
   .cards {

@@ -72,7 +72,7 @@
 }
 
 .footer__bottom {
-  background: var(--primary-dark);
+  background: var(--accent);
   text-align: center;
   padding: 14px;
   font-size: 0.8rem;
